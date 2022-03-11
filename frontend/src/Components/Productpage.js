@@ -1,11 +1,11 @@
-import React,{useEffect,useReducer,useContext} from 'react';
+import React,{useEffect,useReducer,useContext, useState} from 'react';
 import { Container,Card ,Button,Spinner,Row,Col} from 'react-bootstrap';
 import axios from 'axios'
 import { Link,useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { Helmet} from 'react-helmet-async';
-import { BsLadder } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 import Ratings from './Ratings';
 import { Store } from './Store';
 
@@ -37,6 +37,8 @@ const Productpage = () => {
   const {state,dispatch: patchContxt} = useContext(Store)
   const {cart:{cartItems}} = state
 
+  let [searchtopic,setSearchtopic] = useState("")
+  let [searchresult,setSearchresult] = useState([])
 
 
   const [{isLoading,product,error}, dispatch] = useReducer(reducer, {
@@ -88,6 +90,35 @@ const Productpage = () => {
     navigate(`/cartpage`);
   }
 
+  //for search-product
+  const handleChange = (e)=>{
+    setSearchtopic(e.target.value)
+    if(e.target.value){
+      let searcharr = []
+      product.map((item)=>{
+      if(item.name.includes(searchtopic.toLowerCase())){
+          searcharr.push(item)
+        }
+      })
+      setSearchresult(searcharr)
+    }
+    else{
+      setSearchresult([])
+    }
+
+  }
+
+  const handleSearch = async ()=>{
+    let searcharr = []
+    product.map((item)=>{
+     if(item.name.includes(searchtopic.toLowerCase())){
+        searcharr.push(item)
+      }
+    })
+    setSearchresult(searcharr)
+  }
+
+
   return (
     <>
         <div className="product_body">
@@ -97,13 +128,18 @@ const Productpage = () => {
             </title>
           </Helmet>
           <Container>
+            <div className="serch-product">
+              <input onChange={handleChange} type="text" placeholder='Search Product...' />
+              <BsSearch onClick = {handleSearch}></BsSearch>
+            </div>
               <div className="inner_body">
-                  { isLoading ?
+                  { isLoading  ?
                     <div className="loader">
                         <Spinner animation="grow" />
                     </div>
                   :
-                  
+                  searchresult.length == 0
+                  ?
                   product.map((item)=>(
                       <>
                         <Col lg = {3}>
@@ -146,7 +182,52 @@ const Productpage = () => {
                             
                           </Col>
                       </>
-                  ))}
+                  ))
+                  :
+                  searchresult.map((item)=>(
+                    <>
+                      <Col lg = {3}>
+                          <div className="card">
+                            {item.totalsale > 50
+                             ?
+                                <div className="best-sale">
+                                  <img src={item.bestsalepng} alt="" />
+                                </div>
+                              :
+
+                              ""  
+                          
+                            }
+                            <div className="card-img">
+                              <img src={item.image} alt="image" />
+                            </div>
+                            <div className="card-details text-center">
+                                <p>{item.desciprtion}</p>
+                                <h4>${item.price}</h4>
+                                <h5><Link to = {`/products/${item.slug}`}>{item.name} <span>{item.model}</span> </Link></h5>
+                                <div className="left-rating">
+                                  <Ratings rating = {item.rating} ratingnumber = {item.numberofrating}/>
+                                </div>
+                                <div className="right-button text-center w-100">
+                                  {item.instock == 0
+                                      ?
+                                      <>
+                                      <Button onClick={()=>handleCart(item)} className='danger' variant="primary">Out Of Stock</Button>
+                                      </>
+                                      :
+                                      <>
+                                      <Button onClick={()=>handleCart(item)} variant="primary">{item.button}</Button>
+                                      <ToastContainer onClick={handleRedirect}/>
+                                      </>
+                                  }
+                              </div>
+                            </div>
+                          </div>
+                          
+                        </Col>
+                    </>
+                ))
+                }
               </div>
           </Container>
         </div>

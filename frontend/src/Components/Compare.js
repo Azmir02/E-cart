@@ -28,6 +28,7 @@ const Compare = () => {
     const {cart:{cartItems}} = state
     const [compareproduct,setCompareproduct] = useState("")
     const [compareproduct2,setCompareproduct2] = useState("")
+    const [compareproduct3,setCompareproduct3] = useState("")
 
 
 
@@ -57,6 +58,11 @@ const Compare = () => {
     let productinfo = await axios.get(`/products/${params}`)
     setCompareproduct2(productinfo.data)
   }
+  //another side compare
+  const handleCompare3 = async (params)=>{
+    let productinfo = await axios.get(`/products/${params}`)
+    setCompareproduct3(productinfo.data)
+  }
 
   let handleCart = async (product)=>{
     const existingItem = state.cart.cartItems.find((item)=> item._id == product._id)
@@ -80,7 +86,7 @@ const Compare = () => {
     <>
         <Container className='main-compare'>
             <Row className='mt-5'>
-                <Col lg={4}>
+                <Col lg={3}>
                     <div className="left-compare">
                     <Dropdown>
                         <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
@@ -111,6 +117,7 @@ const Compare = () => {
                               <img src={compareproduct.image} alt="" />
                               <p>{compareproduct.desciprtion}</p>
                               <h4>{compareproduct.name}</h4>
+                              <h3>${compareproduct.price}</h3>
                               <div className="left-rating">
                                 <Ratings rating = {compareproduct.rating} ratingnumber = {compareproduct.numberofrating}/>
                               </div>
@@ -122,13 +129,13 @@ const Compare = () => {
                         </>
                         :
                        <div className="not-choosen">
-                          <h4>Please  Choose Any Kind Of Product</h4>
+                          <h6>Please  Choose Any Kind Of Product</h6>
                        </div> 
                     }
                     </div>
                 </Col>
-                <Col lg = {4} className = "ms-auto">
-                <div className="left-compare">
+                <Col lg = {3} className = "ms-auto">
+                <div className="middle-compare">
                     <Dropdown>
                         <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
                             Choose Products
@@ -158,6 +165,7 @@ const Compare = () => {
                               <img src={compareproduct2.image} alt="" />
                               <p>{compareproduct2.desciprtion}</p>
                               <h4>{compareproduct2.name}</h4>
+                              <h3>${compareproduct2.price}</h3>
                               <div className="left-rating">
                                 <Ratings rating = {compareproduct2.rating} ratingnumber = {compareproduct2.numberofrating}/>
                               </div>
@@ -169,7 +177,55 @@ const Compare = () => {
                         </>
                         :
                        <div className="not-choosen">
-                          <h4>Please  Choose Any Kind Of Product</h4>
+                          <h6>Please  Choose Any Kind Of Product</h6>
+                       </div> 
+                    }
+                    </div>
+                </Col>
+                <Col lg = {3} className = "ms-auto">
+                <div className="left-compare">
+                    <Dropdown>
+                        <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
+                            Choose Products
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu variant="dark">
+                        {product.map((item)=>(
+                                <>
+                                <Dropdown.Item href="#" active onClick={()=>handleCompare3(item.slug)}>
+                                    <div className="menu-product d-flex align-items-center justify-content-between">
+                                            <div className="product-images">
+                                                <img src={item.image} alt="" />
+                                            </div>
+                                            <div className="product-name">
+                                                <span>{item.name}</span>
+                                            </div>
+                                    </div>
+                                </Dropdown.Item>
+                                </>
+                        ))}
+                        
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    {compareproduct3 ?
+                        <>
+                          <div className="compare-product-details mt-5">
+                              <img src={compareproduct3.image} alt="" />
+                              <p>{compareproduct3.desciprtion}</p>
+                              <h4>{compareproduct3.name}</h4>
+                              <h3>${compareproduct3.price}</h3>
+                              <div className="left-rating">
+                                <Ratings rating = {compareproduct3.rating} ratingnumber = {compareproduct3.numberofrating}/>
+                              </div>
+                              <Button onClick={()=>handleCart(compareproduct3)} variant="primary">{compareproduct3.button}</Button>
+                              
+                          </div>
+                          
+                          
+                        </>
+                        :
+                       <div className="not-choosen">
+                          <h6>Please  Choose Any Kind Of Product</h6>
                        </div> 
                     }
                     </div>

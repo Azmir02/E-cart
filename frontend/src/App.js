@@ -19,7 +19,6 @@ import Compare from './Components/Compare';
 
 function App() {
   let navigate = useNavigate()
-  console.log("hello");
 
 
   const {state,dispatch,state2,dispatch2} = useContext(Store)
@@ -63,9 +62,15 @@ function App() {
             </Link>
           </Navbar.Brand>
           <Nav className="m-auto menu_bar">
-            <NavLink  to = "/">Home</NavLink>
-            <NavLink to = "/products">Products</NavLink>
-            <NavLink to = "/compare">Compare</NavLink>
+            <li>
+              <NavLink  to = "/">Home</NavLink>
+            </li>
+            <li>
+              <NavLink  to = "/products">Products</NavLink>
+            </li>
+            <li>
+              <NavLink  to = "/compare">Compare</NavLink>
+            </li>
           </Nav>
           <Nav className="menu_bar">
           <div className="cart text-center" onClick={handleShow}>
@@ -79,7 +84,7 @@ function App() {
                }
           </div>
           </Nav>
-          <Nav className="menu_bar">
+          <Nav className="menu_bar2">
                <Link to = '/wishlist'>
                 <div className="cart text-center">
                 <BsHeart></BsHeart>

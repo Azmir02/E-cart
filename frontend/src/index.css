@@ -19,22 +19,106 @@ ul,ol{
 .logo img{
   width: 50%;
 }
+.menu_bar li{
+  padding: 0 15px;
+}
 .menu_bar a{
   color: #333;
-  padding: 0 15px;
   transition: all linear .3s;
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-weight: 500;
+  position: relative;
+}
+.menu_bar a:after{
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #E3473B;
+  transform: scale(0,1);
+  transform-origin: right center;
+  transition: transform ease .4s;
 }
 .menu_bar a:last-child{
   padding-right: 0;
 }
-.menu_bar a:hover{
+.menu_bar li:hover a{
   color: #e3473b;
+}
+.menu_bar li:hover a:after{
+  transform-origin: left center;
+  transform: scale(1,1);
 }
 .menu_bar a.active{
   color: #e3473b;
+}
+.menu_bar a.active:after{
+  transform-origin: left center;
+  transform: scale(1,1);
+}
+/*modal home page*/
+.modal-dialog{
+  position: absolute !important;
+  top: 45% !important;
+  left: 45% !important;
+  transform: translate(-50%,-50%) !important;
+}
+.modal-content {
+  background-color: #fff;
+  border: none;
+  width: 600px !important;
+}
+.popup-text{
+  position: absolute;
+  width: 53%;
+  top: 50%;
+  left: 40px;
+  transform: translateY(-50%);
+}
+.popup-btn button{
+  padding: 10px 25px;
+  border-radius: 50px;
+  margin-top: 30px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  background-color: #111;
+  border: none;
+  transition: all ease .3s;
+}
+.popup-btn button:hover{
+  background-color: #e3473b;
+}
+.popup-text h4{
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #566c8e;
+}
+.popup-text p{
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #b1b1b1;
+  margin-top: 10px;
+  line-height: 24px;
+}
+.popup-text h3{
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px !important;
+  font-weight: 700;
+  margin-top: 15px;
+  color: #444;
+  text-transform: capitalize;
+}
+.modal-body{
+  padding: 0 !important;
+}
+.modal-content img{
+  width: 100%;
+  display: block;
 }
 .card {
   border: none !important;
@@ -662,12 +746,7 @@ ul,ol{
 .dropdown-menu {
   min-width: 15rem !important;
 }
-.btn-check:focus+.btn-secondary, .btn-secondary:focus {
-  color: #fff;
-  background-color: #e3473b !important;
-  border-color: #e3473b !important;
-  box-shadow: none !important;
-}
+
 .dropdown-toggle::after {
   display: none !important;
 }
@@ -679,6 +758,19 @@ ul,ol{
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.compare-product-details h3{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  color: #666;
+}
+.main-compare {
+  padding-bottom: 100px;
+}
+.main-compare .dropdown-menu {
+  max-height: 500px;
+  overflow-y: scroll;
 }
 .main-compare h4{
   font-family: 'Poppins', sans-serif;
@@ -696,16 +788,17 @@ ul,ol{
 }
 .not-choosen{
   width: 100%;
-  background-color: #e3473b;
+  background-color: #504f4f;
   margin-top: 20px;
-  padding: 20px;
+  padding: 20px 8px;
   text-align: center;
 }
-.not-choosen h4{
+.not-choosen h6{
   font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 18px;
+  font-weight: 400;
+  font-size: 16px;
   color: #fff;
+  margin-bottom: 0;
 }
 .compare-product-details button{
   border: none;
@@ -717,8 +810,28 @@ ul,ol{
   margin-top: 20px;
   font-size: 14px;
 }
+.main-compare .btn-secondary {
+  color: #fff;
+  background-color: #E3473B;
+  border-color: #E3473B;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+.main-compare .btn-secondary:hover {
+  color: #fff;
+  background-color: #111!important;
+  border-color: #111 !important;
+}
+
+.btn-check:focus+.btn-secondary, .btn-secondary:focus {
+  color: #fff;
+  background-color: #111!important;
+  border-color: #111 !important;
+  box-shadow: none !important;
+}
 .compare-product-details button:hover{
-  background-color: #333;
+  background-color: #111;
 }
 
 
@@ -755,14 +868,45 @@ ul,ol{
   margin-left: 15px;
 }
 
-
-/*banner*/
-
-#banner{
-  background: url('../public/images/banner.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding-top: 300px;
-  padding-bottom: 300px;
+.serch-product{
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  position: relative;
 }
+.serch-product input{
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px 45px 10px 15px;
+  border: 1px solid #a9aaad;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+.serch-product input:focus{
+  outline: none;
+}
+.serch-product svg{
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  fill: #858585;
+  cursor: pointer;
+  transition: all linear .3s;
+}
+.serch-product svg:hover{
+  fill: #E3473B;
+}
+/*banner*/
+#banner{
+  position: relative;
+}
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(230, 230, 230, 0.2);
+}
+

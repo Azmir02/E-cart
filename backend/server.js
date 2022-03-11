@@ -1,4 +1,6 @@
 import express from 'express'
+import popupimg from './Popupdata.js'
+import banner_js from './Banner.js'
 import data from './Data.js'
 const app = express()
 
@@ -6,6 +8,16 @@ app.use(express.json())
 
 app.get('/products', function (req, res) {
   res.send(data)
+})
+
+//for discount routes
+app.get('/discount', function (req, res) {
+  res.send(popupimg)
+})
+
+//for banner routes
+app.get('/banner', function (req, res) {
+  res.send(banner_js)
 })
 
 //For Dynamic Route

@@ -54,6 +54,22 @@ function App() {
     
   return (
     <>
+        <div className="top-header">
+          <Container>
+            <Row>
+              <Col lg = {6}>
+                 <div className="language">
+                  language    
+                </div> 
+              </Col>
+              <Col lg = {6}>
+                  <div className="register-login text-end">
+                  LOGIN    
+                  </div>
+              </Col>
+            </Row>
+          </Container>
+        </div>
         <Navbar>
           <Container>
           <Navbar.Brand className='logo' >

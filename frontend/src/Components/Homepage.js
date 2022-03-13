@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import { Helmet} from 'react-helmet-async';
 import axios from 'axios';
-import {Modal,Button,Row,Col} from 'react-bootstrap'
+import {Modal,Button,Row,Col,Container} from 'react-bootstrap'
 import Slider from "react-slick";
 import { BsArrowLeftShort,BsArrowRightShort } from "react-icons/bs";
 
@@ -28,10 +28,13 @@ const Homepage = () => {
 
   //slick-slider
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
+    fade: true,
     arrows: false,
     autoplay: true,
+    speed: 4000,
+    autoplaySpeed: 4500,
     slidesToShow: 1,
     slidesToScroll: 1
   };
@@ -64,21 +67,31 @@ const Homepage = () => {
       </Modal>
 
     <section id = "banner">
-        
-        <Row className='mx-0'>
-          <Col lg = {12} className = "px-0">
-          <Slider {...settings}>
-            {banner.map((item)=>(
-                <>
-                <img src={item.image} alt="" />
-                <div className="overlay"></div>  
-                </>
-            ))}
-            
-          </Slider>
-          </Col>
-        </Row>
-        <div className="overlay"></div>
+      
+        <Container>
+          <Row className='mt-3'>
+            <Col lg = {12}>
+                <Row className='mx-0'>
+                  <Col lg = {8} className = "ms-auto px-0">
+                    <Slider {...settings}>
+                          {banner.map((item)=>(
+                              <div className='banner-images'>
+                                <img src={item.image} alt="banner" />
+                                <div className="ban-text">
+                                  <h5>
+                                    {item.title}</h5>
+                                  <h2>{item.subtitle}</h2>
+                                  <p>
+                                    {item.para}</p>  
+                                </div>
+                              </div>
+                          ))}
+                      </Slider> 
+                    </Col>
+                </Row>
+            </Col>
+          </Row>
+        </Container>
     </section>
     </>
   )

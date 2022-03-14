@@ -17,13 +17,25 @@ ol {
 .navbar {
   padding-top: 30px !important;
   padding-bottom: 30px !important;
+}
+.call p {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 0;
+}
+.call p a {
+  text-decoration: none;
+  color: #ddd;
+}
+.second-bar {
   border-bottom: 1px solid #ddd;
 }
 .navbar-nav {
   padding-top: 10px;
 }
 .logo img {
-  width: 50%;
+  width: 70%;
 }
 .menu_bar li {
   padding: 0 15px;
@@ -872,9 +884,8 @@ ol {
 }
 .serch-product input {
   width: 100%;
-  border-radius: 5px;
   padding: 10px 45px 10px 15px;
-  border: 1px solid #a9aaad;
+  border: 3px solid #051d43;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
 }
@@ -883,15 +894,11 @@ ol {
 }
 .serch-product svg {
   position: absolute;
-  top: 50%;
+  top: 58%;
   right: 20px;
   transform: translateY(-50%);
-  fill: #858585;
+  fill: #051d43;
   cursor: pointer;
-  transition: all linear 0.3s;
-}
-.serch-product svg:hover {
-  fill: #f02757;
 }
 /*banner*/
 #banner {
@@ -966,4 +973,17 @@ ol {
   font-size: 32px;
   text-transform: capitalize;
   color: #02a349;
+}
+.users {
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: 500;
+  color: #797979;
+}
+.users svg {
+  width: 30px;
+  height: 30px;
+  fill: #9a9a9a;
+  margin-right: 15px;
 }

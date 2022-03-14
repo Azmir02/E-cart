@@ -1,4 +1,4 @@
-import { useContext ,useState} from 'react';
+import { useContext ,useState,useReducer,useEffect} from 'react';
 import {Container,Nav,Navbar,Badge,Offcanvas,Row,Col} from 'react-bootstrap'
 import {Routes,Route,NavLink, Link,useNavigate} from "react-router-dom";
 import { BsCart3,BsHeart } from "react-icons/bs";
@@ -11,17 +11,42 @@ import Cart from './Components/Cart';
 import Cartpage from './Components/Cartpage';
 import { Store } from './Components/Store';
 import Wishlist from './Components/Wishlist';
+import { BsSearch,BsPersonCircle } from "react-icons/bs";
+import axios from 'axios'
 import Compare from './Components/Compare';
 
 
+//reducer
+function reducer(state, action) {
+  switch (action.type) {
+    case 'FETCH_REQUEST':
+      return {...state,isLoading:true};
+      case 'FETCH_SUCCESS':
+        return {...state,isLoading:false, product: action.payload};
+      case 'FETCH_ERROR':
+        return {...state,isLoading:false, error: action.payload};
+    default:
+      return state
+  }
+}
 
 
 
 function App() {
   let navigate = useNavigate()
+  let [searchtopic,setSearchtopic] = useState("")
+  let [searchresult,setSearchresult] = useState([])
+  let [phone,setPhone] = useState("")
 
 
-  const {state,dispatch,state2,dispatch2} = useContext(Store)
+  const [{isLoading,product,error}, dispatch] = useReducer(reducer, {
+    isLoading: false,
+    product: [],
+    error: ''
+  });
+
+
+  const {state,dispatch:contextpatch,state2,dispatch2} = useContext(Store)
   const {cart:{cartItems}} = state
   const {Wishlist:{WishlistItems}} = state2
 
@@ -31,11 +56,25 @@ function App() {
   const handleShow = () => setShow(true);
 
   const Cartupdate = (item,quantity)=>{
-    dispatch({
+    contextpatch({
         type: 'ADD_TO_CART',
         payload: {...item,quantity}
     })
   }
+
+
+  useEffect( ()=>{
+    const loaddata = async ()=>{
+      dispatch({type:'FETCH_REQUEST'})
+    try{
+      let productinfo = await axios.get('/products')
+      dispatch({type:'FETCH_SUCCESS', payload:productinfo.data})
+    }catch(err){
+      dispatch({type:'FETCH_ERROR', payload:err.message})
+    }
+    }
+    loaddata()
+  },[])
 
     //for delete cart
     const handleDelete = (item)=>{
@@ -51,6 +90,45 @@ function App() {
         navigate(`/cartpage`)
         setShow(false)
     }
+     //for search-product
+  const handleChange = (e)=>{
+    setSearchtopic(e.target.value)
+    if(e.target.value){
+      let searcharr = []
+      product.map((item)=>{
+      if(item.name.includes(searchtopic.toLowerCase())){
+          searcharr.push(item)
+        }
+      })
+      setSearchresult(searcharr)
+    }
+    else{
+      setSearchresult([])
+    }
+
+  }
+
+  const handleSearch = async ()=>{
+    let searcharr = []
+    product.map((item)=>{
+     if(item.name.includes(searchtopic.toLowerCase())){
+        searcharr.push(item)
+      }
+    })
+    setSearchresult(searcharr)
+  }
+
+  //for number
+
+  useEffect(()=>{
+    const numbers = async ()=>{
+      let phone = await axios.get('/phone')
+      setPhone(phone.data);
+    }
+
+    numbers()
+  },[])
+
     
   return (
     <>
@@ -63,8 +141,8 @@ function App() {
                 </div> 
               </Col>
               <Col lg = {6}>
-                  <div className="register-login text-end">
-                  LOGIN    
+                  <div className="call text-end">
+                      <p>Call us: <a href= {`tel:${phone.phone}`}>+{phone.phone}</a> </p>    
                   </div>
               </Col>
             </Row>
@@ -77,16 +155,9 @@ function App() {
               <img  src= {logo} alt="logo" />
             </Link>
           </Navbar.Brand>
-          <Nav className="m-auto menu_bar">
-            <li>
-              <NavLink  to = "/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink  to = "/products">Products</NavLink>
-            </li>
-            <li>
-              <NavLink  to = "/compare">Compare</NavLink>
-            </li>
+          <Nav className="m-auto serch-product">
+          <input onChange={handleChange} type="text" placeholder='Search Product...' />
+              <BsSearch onClick = {handleSearch}></BsSearch>
           </Nav>
           <Nav className="menu_bar">
           <div className="cart text-center" onClick={handleShow}>
@@ -110,6 +181,33 @@ function App() {
                   </Badge>
                   )
                 }
+                </div>
+
+               </Link>
+          </Nav>
+          </Container>
+        </Navbar>
+
+
+        {/*for bottom nav*/}
+        <Navbar className='second-bar'>
+          <Container>
+          <Nav className="m-auto menu_bar">
+            <li>
+              <NavLink  to = "/">Home</NavLink>
+            </li>
+            <li>
+              <NavLink  to = "/products">Products</NavLink>
+            </li>
+            <li>
+              <NavLink  to = "/compare">Compare</NavLink>
+            </li>
+          </Nav>
+          <Nav className="user">
+               <Link to = '/'>
+                <div className="users text-center">
+                <BsPersonCircle></BsPersonCircle>
+                <span>Login</span>
                 </div>
 
                </Link>

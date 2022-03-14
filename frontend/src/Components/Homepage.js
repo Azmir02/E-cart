@@ -33,8 +33,8 @@ const Homepage = () => {
     fade: true,
     arrows: false,
     autoplay: true,
-    speed: 4000,
-    autoplaySpeed: 4500,
+    speed: 2500,
+    autoplaySpeed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1
   };

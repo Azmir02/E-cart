@@ -1,6 +1,7 @@
 import express from 'express'
 import popupimg from './Popupdata.js'
 import banner_js from './Banner.js'
+import numbers from './Phone.js'
 import data from './Data.js'
 const app = express()
 
@@ -18,6 +19,10 @@ app.get('/discount', function (req, res) {
 //for banner routes
 app.get('/banner', function (req, res) {
   res.send(banner_js)
+})
+//For phone
+app.get('/phone', function (req, res) {
+  res.send(numbers)
 })
 
 //For Dynamic Route
@@ -37,6 +42,8 @@ app.get('/:id', function (req, res) {
   })
   res.send(product)
 })
+
+
 
 
 

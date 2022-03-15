@@ -3,7 +3,7 @@ import { Helmet} from 'react-helmet-async';
 import axios from 'axios';
 import {Modal,Button,Row,Col,Container} from 'react-bootstrap'
 import Slider from "react-slick";
-import { BsArrowLeftShort,BsArrowRightShort } from "react-icons/bs";
+import { BsTruck,BsHeadphones ,BsCreditCard2Back,BsCashStack} from "react-icons/bs";
 
 const Homepage = () => {
   const [show, setShow] = useState(true);
@@ -72,7 +72,7 @@ const Homepage = () => {
           <Row className='mt-3'>
             <Col lg = {12}>
                 <Row className='mx-0'>
-                  <Col lg = {8} className = "ms-auto px-0">
+                  <Col lg = {9} className = "ms-auto px-0">
                     <Slider {...settings}>
                           {banner.map((item)=>(
                               <div className='banner-images'>
@@ -89,6 +89,63 @@ const Homepage = () => {
                       </Slider> 
                     </Col>
                 </Row>
+            </Col>
+          </Row>
+        </Container>
+    </section>
+
+    <section id='details'>
+        <Container>
+          <Row>
+            <Col lg = {12}>
+                <div className="inner-details">
+                  <Row>
+                    <Col lg = {3}>
+                      <div className="details-part d-flex">
+                            <div className="left-details-image">
+                              <BsTruck></BsTruck>  
+                            </div>
+                            <div className="right-details-text">
+                                <h4>Free Shipping</h4>  
+                                <p>Free shipping on all BD order</p>
+                            </div>
+                      </div>
+                    </Col>
+                    <Col lg = {3}>
+                      <div className="details-part d-flex">
+                            <div className="left-details-image">
+                              <BsHeadphones></BsHeadphones>  
+                            </div>
+                            <div className="right-details-text">
+                                <h4>24/7 Support</h4>  
+                                <p>Contact us 24 hours a day</p>
+                            </div>
+                      </div>
+                    </Col>
+                    <Col lg = {3}>
+                      <div className="details-part d-flex">
+                            <div className="left-details-image">
+                              <BsCreditCard2Back></BsCreditCard2Back>  
+                            </div>
+                            <div className="right-details-text">
+                                <h4>100% Money Back</h4>  
+                                <p>You have 30 days to Return</p>
+                            </div>
+                      </div>
+                    </Col>
+                    <Col lg = {3}>
+                      <div className="details-part d-flex">
+                            <div className="left-details-image">
+                              <BsCashStack></BsCashStack>  
+                            </div>
+                            <div className="right-details-text">
+                                <h4>90 Days Return</h4>  
+                                <p>If goods have problems</p>
+                            </div>
+                      </div>
+                    </Col>
+                  </Row>
+                </div>
             </Col>
           </Row>
         </Container>

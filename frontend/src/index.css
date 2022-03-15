@@ -30,6 +30,9 @@ ol {
 }
 .second-bar {
   border-bottom: 1px solid #ddd;
+  padding-top: 30px !important;
+  padding-bottom: 14px !important;
+  position: relative;
 }
 .navbar-nav {
   padding-top: 10px;
@@ -986,4 +989,115 @@ ol {
   height: 30px;
   fill: #9a9a9a;
   margin-right: 15px;
+}
+
+/*category menu*/
+.accordion {
+  width: 15%;
+  position: absolute;
+  top: 32px;
+  z-index: 99;
+}
+.accordion-body {
+  padding: 0 !important;
+  box-shadow: 0 4px 10px 0 rgb(147 159 197 / 16%) !important;
+}
+.accordion-button {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  text-transform: capitalize;
+  padding: 1rem 1rem !important;
+  font-weight: 500;
+  color: #252525 !important;
+  background-color: #d8e1e6 !important;
+}
+.accordion-button:after {
+  display: none;
+}
+.accordion-button:focus {
+  z-index: 3;
+  border-color: transparent !important;
+  outline: 0;
+  box-shadow: none !important;
+}
+.accordion-button:not(.collapsed) {
+  background-color: #d8e1e6 !important;
+  box-shadow: none !important;
+}
+.accordion-item:last-of-type .accordion-button.collapsed {
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+/*list group*/
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 0.8rem 3rem !important;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  text-transform: capitalize;
+  color: #252525 !important;
+  font-weight: 500;
+  text-decoration: none;
+  background-color: #fff;
+  border: none !important;
+  cursor: pointer;
+}
+.list-group-item:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background-color: #ededed;
+}
+.list-group:first-child .list-group-item:after {
+  display: none;
+}
+.cat-icon svg {
+  margin-right: 10px;
+  fill: #252525;
+  width: 20px;
+  height: 20px;
+}
+
+/*details*/
+#details {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.inner-details {
+  border: 1px solid #ededed;
+}
+.left-details-image {
+  width: 25%;
+}
+.left-details-image svg {
+  width: 100%;
+  height: 40px;
+  fill: #f02757;
+}
+.details-part {
+  padding: 50px 20px;
+  box-sizing: border-box;
+}
+.right-details-text {
+  width: 75%;
+}
+.right-details-text h4 {
+  margin-bottom: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #252525;
+}
+.right-details-text p {
+  margin-bottom: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #252525;
 }

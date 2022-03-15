@@ -1,5 +1,5 @@
 import { useContext ,useState,useReducer,useEffect} from 'react';
-import {Container,Nav,Navbar,Badge,Offcanvas,Row,Col} from 'react-bootstrap'
+import {Container,Nav,Navbar,Badge,Offcanvas,Row,Col,Accordion,ListGroup} from 'react-bootstrap'
 import {Routes,Route,NavLink, Link,useNavigate} from "react-router-dom";
 import { BsCart3,BsHeart } from "react-icons/bs";
 import logo from './logo.png'
@@ -11,7 +11,7 @@ import Cart from './Components/Cart';
 import Cartpage from './Components/Cartpage';
 import { Store } from './Components/Store';
 import Wishlist from './Components/Wishlist';
-import { BsSearch,BsPersonCircle } from "react-icons/bs";
+import { BsSearch,BsPersonCircle,BsReplyAllFill } from "react-icons/bs";
 import axios from 'axios'
 import Compare from './Components/Compare';
 
@@ -37,6 +37,7 @@ function App() {
   let [searchtopic,setSearchtopic] = useState("")
   let [searchresult,setSearchresult] = useState([])
   let [phone,setPhone] = useState("")
+  let [category,setCategory] = useState([])
 
 
   const [{isLoading,product,error}, dispatch] = useReducer(reducer, {
@@ -129,6 +130,17 @@ function App() {
     numbers()
   },[])
 
+
+  //for category
+  let categoryarray = []
+  useEffect(()=>{
+    product.map((item)=>{
+      if(categoryarray.indexOf(item.category) == -1){
+        categoryarray.push(item.category)
+      }
+    })
+    setCategory(categoryarray)
+  },[product])
     
   return (
     <>
@@ -192,6 +204,19 @@ function App() {
         {/*for bottom nav*/}
         <Navbar className='second-bar'>
           <Container>
+          <Accordion defaultActiveKey="0">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header className='cat-icon'><BsReplyAllFill></BsReplyAllFill>Browse Category</Accordion.Header>
+                <Accordion.Body>
+                  {category.map((item)=>(
+                    <ListGroup>
+                      <ListGroup.Item>{item}</ListGroup.Item>
+                  </ListGroup>
+                  ))}
+                
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
           <Nav className="m-auto menu_bar">
             <li>
               <NavLink  to = "/">Home</NavLink>

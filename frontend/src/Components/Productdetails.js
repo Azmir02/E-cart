@@ -13,7 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Store } from './Store';
 import Errorpage from './Errorpage';
-
+import Slider from "react-slick";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -44,12 +44,12 @@ const Productdetails = () => {
       error: ''
     });
 
-    useEffect(async()=>{
-      dispatch({type:'FETCH_REQUEST'})
+    useEffect(()=>{
+      let detailsproducts = async()=>{
+        dispatch({type:'FETCH_REQUEST'})
       try{
         let productinfo = await axios.get(`/products/${params.slug}`)
         dispatch({type:'FETCH_SUCCESS', payload:productinfo.data})
-
 
         //related product parts
         let allproducts = await axios.get(`/products`)
@@ -59,6 +59,8 @@ const Productdetails = () => {
       }catch(err){
         dispatch({type:'FETCH_ERROR', payload:err.message})
       }
+      }
+      detailsproducts()
     },[params.slug])
 
 
@@ -128,6 +130,21 @@ const Productdetails = () => {
      
     }
 
+
+
+  //slick-slider
+  const settings = {
+    dots: false,
+    infinite: true,
+    arrows: false,
+    autoplay: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1
+  };
+
+
+    
   return (
     <>
       <section id='product_details'>
@@ -178,13 +195,18 @@ const Productdetails = () => {
 
                             ?
 
-                            relatedproducts.map((item)=>(
-                              <Col lg = {3} className = "main-related">
-                                    <div className="related-images">
-                                      <Link to = {`/products/${item.slug}`}><img src={item.image} alt="" /></Link>
-                                    </div>
-                              </Col>
-                            ))
+                           
+                              <Slider {...settings}>
+                                {
+                                  relatedproducts.map((item)=>(
+                                    <Col lg = {3} className = "main-related">
+                                          <div className="related-images">
+                                            <Link to = {`/products/${item.slug}`}><img src={item.image} alt="" /></Link>
+                                          </div>
+                                    </Col>
+                                  ))
+                                }
+                              </Slider> 
 
                             :
 

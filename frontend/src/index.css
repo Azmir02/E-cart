@@ -852,7 +852,6 @@ ol {
   width: 100px;
   height: 100px;
   overflow: hidden;
-  border: 1px solid #dddcdc;
 }
 .related-images img {
   width: 100%;
@@ -1100,4 +1099,49 @@ ol {
   font-size: 14px;
   font-weight: 400;
   color: #252525;
+}
+
+/*latest-slider*/
+
+#latest-slider {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: #f9f9f9;
+}
+.latest-header h5 {
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 0;
+  margin-bottom: 20px;
+}
+
+.product-inner {
+  border: 1px solid #eaeaea;
+}
+.inner-latest {
+  padding: 21px 26px;
+  border-top: 1px solid #eaeaea;
+}
+.latest-image {
+  width: 20%;
+}
+.latest-image img {
+  width: 100%;
+}
+.latest-content {
+  width: 70%;
+}
+.latest-content h6 {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #252525;
+  text-transform: capitalize;
+  margin-bottom: 0;
+}
+.latest-content i {
+  color: #fb8200;
+  font-size: 13px;
 }

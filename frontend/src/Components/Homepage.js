@@ -4,6 +4,7 @@ import axios from 'axios';
 import {Modal,Button,Row,Col,Container} from 'react-bootstrap'
 import Slider from "react-slick";
 import { BsTruck,BsHeadphones ,BsCreditCard2Back,BsCashStack} from "react-icons/bs";
+import Latestslider from './Homepagecomponents/Latestslider';
 
 const Homepage = () => {
   const [show, setShow] = useState(true);
@@ -150,6 +151,8 @@ const Homepage = () => {
           </Row>
         </Container>
     </section>
+
+    <Latestslider></Latestslider>
     </>
   )
 };

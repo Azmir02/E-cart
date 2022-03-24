@@ -35,6 +35,7 @@ const Productpage = () => {
   let navigate = useNavigate()
 
   const {state,dispatch: patchContxt} = useContext(Store)
+
   const {cart:{cartItems}} = state
 
   let [searchtopic,setSearchtopic] = useState("")
@@ -50,7 +51,7 @@ const Productpage = () => {
   useEffect(async ()=>{
     dispatch({type:'FETCH_REQUEST'})
     try{
-      let productinfo = await axios.get('/products')
+      let productinfo = await axios.get('/api/products')
       dispatch({type:'FETCH_SUCCESS', payload:productinfo.data})
     }catch(err){
       dispatch({type:'FETCH_ERROR', payload:err.message})
@@ -59,7 +60,7 @@ const Productpage = () => {
 
 
   let handleCart = async (product)=>{
-    const existingItem = state.cart.cartItems.find((item)=> item._id == product._id)
+    const existingItem = state.cart.cartItems.find((item)=> item._id === product._id)
     const quantity  = existingItem ? existingItem.quantity + 1 : 1
 
     const {data} = await axios.get(`/${product._id}`)
@@ -160,7 +161,7 @@ const Productpage = () => {
                               <div className="card-details text-center">
                                   <p>{item.desciprtion}</p>
                                   <h4>${item.price}</h4>
-                                  <h5><Link to = {`/products/${item.slug}`}>{item.name} <span>{item.model}</span> </Link></h5>
+                                  <h5><Link to = {`/api/products/${item.slug}`}>{item.name} <span>{item.model}</span> </Link></h5>
                                   <div className="left-rating">
                                     <Ratings rating = {item.rating} ratingnumber = {item.numberofrating}/>
                                   </div>
@@ -204,7 +205,7 @@ const Productpage = () => {
                             <div className="card-details text-center">
                                 <p>{item.desciprtion}</p>
                                 <h4>${item.price}</h4>
-                                <h5><Link to = {`/products/${item.slug}`}>{item.name} <span>{item.model}</span> </Link></h5>
+                                <h5><Link to = {`/api/products/${item.slug}`}>{item.name} <span>{item.model}</span> </Link></h5>
                                 <div className="left-rating">
                                   <Ratings rating = {item.rating} ratingnumber = {item.numberofrating}/>
                                 </div>

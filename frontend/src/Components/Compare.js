@@ -46,7 +46,7 @@ const Compare = () => {
     const fetchproduct = async()=>{
       dispatch({ type: "FETCH_REQUEST" });
       try {
-        let productinfo = await axios.get('/products')
+        let productinfo = await axios.get('/api/products')
         dispatch({ type: "FETCH_SUCCESS", payload: productinfo.data });
       } catch (err) {
         dispatch({ type: "FETCH_ERROR", payload: err.message });
@@ -56,12 +56,12 @@ const Compare = () => {
   }, []);
 
   const handleCompare = async (params) => {
-    let productinfo = await axios.get(`/products/${params}`);
+    let productinfo = await axios.get(`/api/products/${params}`);
     setCompareproduct(productinfo.data);
   };
   //another side compare
   const handleCompare2 = async (params) => {
-    let productinfo = await axios.get(`/products/${params}`);
+    let productinfo = await axios.get(`/api/products/${params}`);
     setCompareproduct2(productinfo.data);
   };
  

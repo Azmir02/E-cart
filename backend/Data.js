@@ -1,6 +1,6 @@
 const product_info = [
     {   
-        _id: 1,
+        // _id: 1,
         image: "/images/laptop.png",
         name: "Macbook Pro",
         model: "tfc",
@@ -19,7 +19,7 @@ const product_info = [
         bestsalepng: "images/bestsale.png"
     },
     {
-        _id: 2,
+        // _id: 2,
         image: "/images/watch.png",
         name: "Apple Watch",
         model: "a6w",
@@ -38,7 +38,7 @@ const product_info = [
         bestsalepng: "images/bestsale.png"
     },
     {
-        _id: 3,
+        // _id: 3,
         image: "/images/mini-mac.png",
         name: "mini-mac",
         model: "T4500",
@@ -57,7 +57,7 @@ const product_info = [
         bestsalepng: "images/bestsale.png"
     },
     {
-        _id: 4,
+        // _id: 4,
         image: "/images/ipad.png",
         name: "iPad mini",
         model: "wV50",
@@ -76,7 +76,7 @@ const product_info = [
         bestsalepng: "images/bestsale.png"
     },
     {
-        _id: 5,
+        // _id: 5,
         image: "/images/product-img-24.png",
         name: "Imac 29",
         slug: "Imac 29",
@@ -94,7 +94,7 @@ const product_info = [
         bestsalepng: "images/bestsale.png"
     },
     {
-        _id: 6,
+        // _id: 6,
         image: "/images/product-img-25.png",
         name: "iPhone 13",
         slug: "iPhone 13",
@@ -113,7 +113,7 @@ const product_info = [
         bestsalepng: "images/bestsale.png"
     },
     {
-        _id: 7,
+        // _id: 7,
         image: "/images/product-img-24.png",
         name: "Imac 30",
         slug: "Imac 30",
@@ -132,7 +132,7 @@ const product_info = [
         bestsalepng: "images/bestsale.png"
     },
     {   
-        _id: 8,
+        // _id: 8,
         image: "/images/laptop.png",
         name: "Macbook Pro Max",
         model: "tfc",
@@ -151,7 +151,7 @@ const product_info = [
         bestsalepng: "images/bestsale.png"
     },
     {
-        _id: 9,
+        // _id: 9,
         image: "/images/watch.png",
         name: "Apple Smart Watch",
         model: "a6w",
@@ -170,7 +170,7 @@ const product_info = [
         bestsalepng: "images/bestsale.png"
     },
     {
-        _id: 10,
+        // _id: 10,
         image: "/images/mini-mac.png",
         name: "Mini Mac 2",
         model: "a6w",
@@ -189,7 +189,7 @@ const product_info = [
         bestsalepng: "images/bestsale.png"
     },
     {
-        _id: 11,
+        // _id: 11,
         image: "/images/product-img-25.png",
         name: "I Phone 12",
         model: "a6w",
@@ -208,7 +208,7 @@ const product_info = [
         bestsalepng: "images/bestsale.png"
     },
     {
-        _id: 12,
+        // _id: 12,
         image: "/images/watch.png",
         name: "Smart Watch",
         model: "a6w",

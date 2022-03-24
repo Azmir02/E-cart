@@ -68,7 +68,7 @@ function App() {
     const loaddata = async ()=>{
       dispatch({type:'FETCH_REQUEST'})
     try{
-      let productinfo = await axios.get('/products')
+      let productinfo = await axios.get('/api/products')
       dispatch({type:'FETCH_SUCCESS', payload:productinfo.data})
     }catch(err){
       dispatch({type:'FETCH_ERROR', payload:err.message})
@@ -222,7 +222,7 @@ function App() {
               <NavLink  to = "/">Home</NavLink>
             </li>
             <li>
-              <NavLink  to = "/products">Products</NavLink>
+              <NavLink  to = "/api/products">Products</NavLink>
             </li>
             <li>
               <NavLink  to = "/compare">Compare</NavLink>
@@ -263,7 +263,7 @@ function App() {
                                                     <img src={item.image} alt="" />
                                                 </div>
                                                 <div className="image-det-name">
-                                                    <Link to = {`/products/${item.slug}`}>{item.name}</Link>
+                                                    <Link to = {`/api/products/${item.slug}`}>{item.name}</Link>
                                                 </div>      
                                           </Col>  
                                     <Col lg = {3}>
@@ -307,8 +307,8 @@ function App() {
 
       <Routes>
         <Route path = "/" element = {<Homepage/>}></Route>
-        <Route path = "/products" element = {<Productpage/>}></Route>
-        <Route path = "/products/:slug" element = {<Productdetails/>}></Route>
+        <Route path = "/api/products" element = {<Productpage/>}></Route>
+        <Route path = "/api/products/:slug" element = {<Productdetails/>}></Route>
         <Route path = "/cart" element = {<Cart/>}></Route>
         <Route path = "/cartpage" element = {<Cartpage/>}></Route>
         <Route path = "/signin" element = {<Signin/>}></Route>

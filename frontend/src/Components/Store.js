@@ -15,6 +15,7 @@ function reducer(state, action) {
     switch (action.type) {
       case 'ADD_TO_CART':
         const NewItem = action.payload
+        console.log(NewItem);
         const exixstingItem = state.cart.cartItems.find((item)=> item._id == NewItem._id)
         const cartItems = exixstingItem ? state.cart.cartItems.map((item) => item._id === exixstingItem._id ? NewItem: item): [...state.cart.cartItems,NewItem]
 

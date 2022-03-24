@@ -48,11 +48,11 @@ const Productdetails = () => {
       let detailsproducts = async()=>{
         dispatch({type:'FETCH_REQUEST'})
       try{
-        let productinfo = await axios.get(`/products/${params.slug}`)
+        let productinfo = await axios.get(`/api/products/${params.slug}`)
         dispatch({type:'FETCH_SUCCESS', payload:productinfo.data})
 
         //related product parts
-        let allproducts = await axios.get(`/products`)
+        let allproducts = await axios.get(`/api/products`)
         let filterproducts = allproducts.data.filter((item) => item.category == productinfo.data.category && item.name !== productinfo.data.name)
         setRelatedproducts(filterproducts);
         
@@ -201,7 +201,7 @@ const Productdetails = () => {
                                   relatedproducts.map((item)=>(
                                     <Col lg = {3} className = "main-related">
                                           <div className="related-images">
-                                            <Link to = {`/products/${item.slug}`}><img src={item.image} alt="" /></Link>
+                                            <Link to = {`/api/products/${item.slug}`}><img src={item.image} alt="" /></Link>
                                           </div>
                                     </Col>
                                   ))

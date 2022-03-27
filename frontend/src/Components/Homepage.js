@@ -16,8 +16,9 @@ const Homepage = () => {
 
 
   useEffect( async()=>{
-    let discount = await axios.get('/discount')
-    setPopupimage(discount.data)
+    let discount = await axios.get('/api/popup/discount')
+    let datapop = discount.data.find((item)=> item._id )
+    setPopupimage(datapop)
   },[])
 
   useEffect( async()=>{

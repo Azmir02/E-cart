@@ -113,7 +113,7 @@ const Cartpage = () => {
                                     </Col>    
                                     <Col lg = {2}>
                                     <div className="subtotal">
-                                        <p>${item._id  ? `${item.quantity * item.price}` : item.price}</p>
+                                        <p>${item._id  ? `${item.quantity * item.price.toFixed()}` : item.price}</p>
                                     </div>
                                        
                                     </Col>    
@@ -137,7 +137,7 @@ const Cartpage = () => {
                         <h3>Total Product</h3>
                         <h4>({cartItems.reduce((accumulator,current)=> accumulator + current.quantity , 0)})</h4>
                         <div className="subtotal">
-                            <p> Total Price: ${cartItems.reduce((accumulator,current)=> accumulator + current.quantity * current.price,0)}</p>
+                            <p> Total Price: ${cartItems.reduce((accumulator,current)=> accumulator + current.quantity * current.price.toFixed(),0)}</p>
                         </div>
                         <div className="payment-button">
                             <button onClick={handleCheck} type='button'>Chekckout</button>

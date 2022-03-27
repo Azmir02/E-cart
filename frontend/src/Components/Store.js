@@ -15,7 +15,6 @@ function reducer(state, action) {
     switch (action.type) {
       case 'ADD_TO_CART':
         const NewItem = action.payload
-        console.log(NewItem);
         const exixstingItem = state.cart.cartItems.find((item)=> item._id == NewItem._id)
         const cartItems = exixstingItem ? state.cart.cartItems.map((item) => item._id === exixstingItem._id ? NewItem: item): [...state.cart.cartItems,NewItem]
 
@@ -88,13 +87,36 @@ function reducer2(state, action) {
     }
   }
 
+//===========For Sign In User===============
+const signininitialstate = {
+    userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
+}
+
+
+function signinreducer(state, action) {
+    switch (action.type) {
+      case 'USER_LOGGIN':
+          return {
+              ...state , 
+              userInfo: action.payload
+            }
+      case 'USER_LOGOUT':
+          return {
+              ...state , 
+              userInfo: null
+            }
+      default:
+        return state
+    }
+  }
 
 
 const Storeprovider = (props)=>{
     const [state,dispatch] = useReducer(reducer,initialstate)
     const [state2,dispatch2] = useReducer(reducer2,initialstate2)
+    const [state3,dispatch3] = useReducer(signinreducer,signininitialstate)
 
-    const value = {state,dispatch,state2,dispatch2} 
+    const value = {state,dispatch,state2,dispatch2,state3,dispatch3} 
 
     return <Store.Provider value = {value}>{props.children}</Store.Provider>
 

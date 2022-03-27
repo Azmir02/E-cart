@@ -1,4 +1,4 @@
-const product_slider = [
+const Productslider = [
     {
         image: "/images/latest_product_1.png",
         price: 22.15,
@@ -48,4 +48,4 @@ const product_slider = [
 
 ]
 
-export default product_slider 
+export default Productslider 

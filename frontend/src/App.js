@@ -1,17 +1,17 @@
 import { useContext ,useState,useReducer,useEffect} from 'react';
 import {Container,Nav,Navbar,Badge,Offcanvas,Row,Col,Accordion,ListGroup} from 'react-bootstrap'
-import {Routes,Route,NavLink, Link,useNavigate} from "react-router-dom";
+import {Routes,Route,NavLink, Link,useNavigate, useLocation} from "react-router-dom";
 import { BsCart3,BsHeart } from "react-icons/bs";
 import logo from './logo.png'
 import Homepage from './Components/Homepage';
 import Productpage from './Components/Productpage';
 import Productdetails from './Components/Productdetails';
 import Signin from './Components/Signin';
-import Cart from './Components/Cart';
 import Cartpage from './Components/Cartpage';
+import 'react-toastify/dist/ReactToastify.css';
 import { Store } from './Components/Store';
 import Wishlist from './Components/Wishlist';
-import { BsSearch,BsPersonCircle,BsReplyAllFill } from "react-icons/bs";
+import { BsSearch,BsReplyAllFill } from "react-icons/bs";
 import axios from 'axios'
 import Compare from './Components/Compare';
 
@@ -47,9 +47,10 @@ function App() {
   });
 
 
-  const {state,dispatch:contextpatch,state2,dispatch2} = useContext(Store)
+  const {state,dispatch:contextpatch,state2,dispatch2,state3,dispatch3} = useContext(Store)
   const {cart:{cartItems}} = state
   const {Wishlist:{WishlistItems}} = state2
+  const {userInfo} = state3
 
   const [show, setShow] = useState(false);
 
@@ -79,7 +80,7 @@ function App() {
 
     //for delete cart
     const handleDelete = (item)=>{
-      dispatch({
+      contextpatch({
           type: 'DELETE_CART',
           payload: item
       })
@@ -141,7 +142,35 @@ function App() {
     })
     setCategory(categoryarray)
   },[product])
+
+
+
+  let {search} = useLocation
+  let redirectUrl = new URLSearchParams(search).get('redirect')
+  let redirect = redirectUrl ? redirectUrl : "/"
     
+
+
+
+  const handleSignout = ()=>{
+    dispatch3({
+      type: "USER_LOGOUT",
+    })
+    localStorage.removeItem("userInfo")
+  }
+
+
+
+  //not to redirect signin page when user logged in
+
+  useEffect(()=>{
+    if(userInfo){
+      navigate('/')
+    }
+  },[userInfo])
+
+
+
   return (
     <>
         <div className="top-header">
@@ -231,8 +260,21 @@ function App() {
           <Nav className="user">
                <Link to = '/'>
                 <div className="users text-center">
-                <BsPersonCircle></BsPersonCircle>
-                <span>Login</span>
+                  {userInfo ? 
+                   <>
+                     <div className="main-userdropdown">
+                      <p>{userInfo.name}</p>
+                        <div className="dropdownuser">
+                            <span>My account</span>
+                            <span>Change profile picture</span>
+                            <span onClick={handleSignout}>Logout</span>
+                        </div> 
+                      </div>
+                   </>
+                  :
+                  <Link to = {`/signin?redirect=${redirect}`}>Login</Link>
+
+                }
                 </div>
 
                </Link>
@@ -277,7 +319,7 @@ function App() {
                                     </Col>    
                                     <Col lg = {3}>
                                     <div className="subtotal">
-                                        <p>${item._id  ? `${item.quantity * item.price}` : item.price}</p>
+                                        <p>${item._id  ? `${item.quantity * item.price.toFixed()}` : item.price}</p>
                                     </div>
                                        
                                     </Col>    
@@ -303,13 +345,13 @@ function App() {
 
 
 
+
         
 
       <Routes>
         <Route path = "/" element = {<Homepage/>}></Route>
         <Route path = "/api/products" element = {<Productpage/>}></Route>
         <Route path = "/api/products/:slug" element = {<Productdetails/>}></Route>
-        <Route path = "/cart" element = {<Cart/>}></Route>
         <Route path = "/cartpage" element = {<Cartpage/>}></Route>
         <Route path = "/signin" element = {<Signin/>}></Route>
         <Route path = "/wishlist" element = {<Wishlist/>}></Route>

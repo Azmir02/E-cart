@@ -63,10 +63,18 @@ const Productpage = () => {
     const existingItem = state.cart.cartItems.find((item)=> item._id === product._id)
     const quantity  = existingItem ? existingItem.quantity + 1 : 1
 
-    const {data} = await axios.get(`/${product._id}`)
+    const {data} = await axios.get(`/api/${product._id}`)
 
     if(data.instock < quantity){
-      alert(`${product.name} Is Out Of Stock`)
+      toast.error(`${product.name} is out of stock now`, {
+        position: "bottom-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        });
       return
     }
     patchContxt({
@@ -82,9 +90,8 @@ const Productpage = () => {
     hideProgressBar: false,
     closeOnClick: false,
     pauseOnHover: false,
-    draggable: false,
+    draggable: true,
     progress: undefined,
-    theme: "dark"
     });
   }
   const handleRedirect = ()=>{
@@ -174,7 +181,7 @@ const Productpage = () => {
                                         :
                                         <>
                                         <Button onClick={()=>handleCart(item)} variant="primary">{item.button}</Button>
-                                        <ToastContainer onClick={handleRedirect}/>
+                                        <ToastContainer limit={1} onClick={handleRedirect}/>
                                         </>
                                     }
                                 </div>
@@ -218,7 +225,7 @@ const Productpage = () => {
                                       :
                                       <>
                                       <Button onClick={()=>handleCart(item)} variant="primary">{item.button}</Button>
-                                      <ToastContainer onClick={handleRedirect}/>
+                                      <ToastContainer limit={1} onClick={handleRedirect}/>
                                       </>
                                   }
                               </div>

@@ -976,25 +976,73 @@ ol {
   text-transform: capitalize;
   color: #02a349;
 }
-.users {
-  font-family: "Poppins", sans-serif;
-  font-size: 18px;
-  text-transform: capitalize;
-  font-weight: 500;
-  color: #797979;
-}
+
 .users svg {
   width: 30px;
   height: 30px;
   fill: #9a9a9a;
   margin-right: 15px;
 }
+.users a {
+  color: #797979;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.users a:hover {
+  color: #f02757;
+}
+.users p {
+  color: #f02757;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.main-userdropdown {
+  position: relative;
+}
+.dropdownuser {
+  position: absolute;
+  top: 41px;
+  left: 50%;
+  transform: scale(0.75) translateY(-21px) translateX(-50%);
+  transform-origin: 50% 0;
+  background-color: #fff;
+  min-width: 230px;
+  box-shadow: 0 20px 60px 0px rgb(0 0 0 / 15%);
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  transition-delay: 0.2s;
+}
+.dropdownuser span {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #252525;
+  display: block;
+  padding: 20px 0;
+  border-bottom: 1px solid #ededed;
+  transition: 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.dropdownuser span:hover {
+  color: #f02757;
+}
+.main-userdropdown:hover .dropdownuser {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
 
 /*category menu*/
 .accordion {
   width: 15%;
   position: absolute;
-  top: 32px;
+  top: 28px;
   z-index: 99;
 }
 .accordion-body {

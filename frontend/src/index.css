@@ -1193,3 +1193,16 @@ ol {
   color: #fb8200;
   font-size: 13px;
 }
+.best-selling-part {
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 10px;
+}
+.best-sell-header h5 {
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #252525;
+}
+.main-best-product .product_body {
+  margin-top: 40px;
+}

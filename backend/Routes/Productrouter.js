@@ -9,8 +9,8 @@ const Productrouter = express.Router()
 
 Productrouter.get('/',popupgetcontroller)
 Productrouter.get('/products',productcontroller)
-Productrouter.get('/:id',idcontroller)
 Productrouter.get('/pslide',psliders)
+Productrouter.get('/:id',idcontroller)
 
 
 

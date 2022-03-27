@@ -4,6 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import Ratings from '../Ratings';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Bestselling from './Bestselling';
 
 
 function reducer(state, action) {
@@ -34,7 +35,7 @@ const [{isLoading,product,error}, dispatch] = useReducer(reducer, {
     let getslider = async ()=>{
         dispatch({type:'FETCH_REQUEST'})
     try{
-      let productinfo = await axios.get('/slider')
+      let productinfo = await axios.get('/api/pslide')
       dispatch({type:'FETCH_SUCCESS', payload:productinfo.data})
     }catch(err){
       dispatch({type:'FETCH_ERROR', payload:err.message})
@@ -85,7 +86,12 @@ const [{isLoading,product,error}, dispatch] = useReducer(reducer, {
                     </div>
                 </Col>
                 <Col lg = {9}>
-
+                    <div className="best-selling-part">
+                          <div className="best-sell-header">
+                            <h5>Best Selling</h5>
+                          </div> 
+                    </div>
+                    <Bestselling></Bestselling>
                 </Col>
             </Row>
         </Container>    

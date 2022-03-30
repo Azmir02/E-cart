@@ -14,6 +14,8 @@ import Wishlist from './Components/Wishlist';
 import { BsSearch,BsReplyAllFill } from "react-icons/bs";
 import axios from 'axios'
 import Compare from './Components/Compare';
+import Shipping from './Components/Shipping';
+import Signup from './Components/Signup';
 
 
 //reducer
@@ -144,10 +146,6 @@ function App() {
   },[product])
 
 
-
-  let {search} = useLocation
-  let redirectUrl = new URLSearchParams(search).get('redirect')
-  let redirect = redirectUrl ? redirectUrl : "/"
     
 
 
@@ -167,7 +165,7 @@ function App() {
     if(userInfo){
       navigate('/')
     }
-  },[userInfo])
+  },[])
 
 
 
@@ -272,7 +270,7 @@ function App() {
                       </div>
                    </>
                   :
-                  <Link to = {`/signin?redirect=${redirect}`}>Login</Link>
+                  <Link to = {`/signin?redirect=/shipping`}>Login</Link>
 
                 }
                 </div>
@@ -354,8 +352,10 @@ function App() {
         <Route path = "/api/products/:slug" element = {<Productdetails/>}></Route>
         <Route path = "/cartpage" element = {<Cartpage/>}></Route>
         <Route path = "/signin" element = {<Signin/>}></Route>
+        <Route path = "/signup" element = {<Signup/>}></Route>
         <Route path = "/wishlist" element = {<Wishlist/>}></Route>
         <Route path = "/compare" element = {<Compare/>}></Route>
+        <Route path = "/shipping" element = {<Shipping/>}></Route>
       </Routes>
 
      

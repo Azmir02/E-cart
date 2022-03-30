@@ -9,8 +9,9 @@ import { Helmet} from 'react-helmet-async';
 
 const Cartpage = () => {
     let navigate = useNavigate()
-    const {state,dispatch} = useContext(Store)
+    const {state,dispatch,state3} = useContext(Store)
     const {cart:{cartItems}} = state
+    const {userInfo} = state3
 
     const Cartupdate = (item,quantity)=>{
         dispatch({
@@ -29,7 +30,12 @@ const Cartpage = () => {
 
     //for checkoutpage redirect 
     let handleCheck = ()=>{
-        navigate('/signin?redirect=/shipping')
+        if(userInfo){
+            navigate('/shipping')
+        }
+        else{
+            navigate('/signin?redirect=/shipping')
+        }
     }
 
   return (

@@ -76,7 +76,7 @@ const [{isLoading,product,error}, dispatch] = useReducer(reducer, {
                                         <img src={item.image} alt="latest" />    
                                     </div>    
                                     <div className="latest-content">
-                                        <Link to={`/${item.slug}`}><h6>{item.name}</h6>  </Link>  
+                                        <Link to={`/api/products/${item.slug}`}><h6>{item.name}</h6>  </Link>  
                                         <Ratings rating = {item.rating} ratingnumber = {item.numberofrating}/>
                                     </div>    
                                 </div>

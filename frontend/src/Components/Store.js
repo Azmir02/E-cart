@@ -111,12 +111,32 @@ function signinreducer(state, action) {
   }
 
 
+//===========For Shipping ===============
+const shippinginitialstate = {
+    shippingInfo: localStorage.getItem('shippingInfo') ? JSON.parse(localStorage.getItem('shippingInfo')) : {}
+}
+
+
+function shippingreducer(state, action) {
+    switch (action.type) {
+      case 'SHIPPING':
+          return {
+              ...state , 
+              shippingInfo: action.payload
+            }
+      default:
+        return state
+    }
+  }
+
+
 const Storeprovider = (props)=>{
     const [state,dispatch] = useReducer(reducer,initialstate)
     const [state2,dispatch2] = useReducer(reducer2,initialstate2)
     const [state3,dispatch3] = useReducer(signinreducer,signininitialstate)
+    const [state4,dispatch4] = useReducer(shippingreducer,shippinginitialstate)
 
-    const value = {state,dispatch,state2,dispatch2,state3,dispatch3} 
+    const value = {state,dispatch,state2,dispatch2,state3,dispatch3,state4,dispatch4} 
 
     return <Store.Provider value = {value}>{props.children}</Store.Provider>
 

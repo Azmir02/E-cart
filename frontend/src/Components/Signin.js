@@ -68,7 +68,7 @@ const Signin = () => {
                     <Col lg={4} className = "m-auto">
                         <div className="item-signgin d-flex align-items-center">
                           <div className="signin-form">
-                            <div className="form-header mb-5">
+                            <div className="form-header-image mb-5">
                               <img src={paymentlogo} alt="payment" />
                             </div>
                               <div className="form-field mb-3">

@@ -18,6 +18,8 @@ const usergetcontroller = async(req,res)=>{
        }
    }
    res.status(404).json({error: "invalid email or username"})
+
+   
 }
 
 export default usergetcontroller

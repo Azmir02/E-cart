@@ -77,7 +77,7 @@ const Wishlist = () => {
                                             </Col>
                                             <Col lg = {5}>
                                                 <div className="image-det-name">
-                                                    <Link to = {`/products/${item.slug}`}>{item.name}</Link>
+                                                    <Link to = {`/api/products/${item.slug}`}>{item.name}</Link>
                                                 </div>    
                                             </Col>
                                         </Row>

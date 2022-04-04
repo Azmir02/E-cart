@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Alert, Col, Container, Row } from 'react-bootstrap'
 import { Helmet } from 'react-helmet-async'
+import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'
 import Checkout from './Checkout'
 import { Store } from './Store'
@@ -11,26 +12,64 @@ const Shipping = () => {
     const {shippingInfo} = state4 
 
     //information state
-    let [fname,setFname] = useState(shippingInfo.fname || '')
+    let [fname,setFname] = useState( shippingInfo.fname || '')
     let [lname,setLname] = useState(shippingInfo.lname || '')
     let [address,setAddress] = useState(shippingInfo.address || '')
     let [city,setCity] = useState(shippingInfo.city || '')
-    let [state,setState] = useState(shippingInfo.state || '')
+    let [state,setState] = useState( shippingInfo.state || '')
     let [postal,setPostal] = useState(shippingInfo.postal || '')
-    let [email,setEmail] = useState(shippingInfo.email || '')
+    let [email,setEmail] = useState( shippingInfo.email || '')
     let [phone,setPhone] = useState(shippingInfo.phone || '')
+
 
 
 
     //for navigate route
     let navigate = useNavigate()
 
+    //form validation
+    let formValid = ({fname,lname,address,city,state,postal,email,phone})=>{
+        if(!fname|| !lname|| !address|| !city|| !state|| !postal|| !email|| !phone){
+            toast.error("Please full fill your information", {
+                position: "bottom-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+            });
+            
+        }
+        else if(city === state){
+            toast.error(`City and State must be different`, {
+                position: "bottom-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+        else{
+            return true
+        }
+    }
+
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        dispatch4({type: 'SHIPPING', payload: {fname,lname,address,city,state,postal,email,phone}})
-        localStorage.setItem('shippingInfo',JSON.stringify({fname,lname,address,city,state,postal,email,phone}))
-        navigate('/payment')
+        if(formValid({fname,lname,address,city,state,postal,email,phone})){
+            dispatch4({type: 'SHIPPING', payload: {fname,lname,address,city,state,postal,email,phone}})
+            localStorage.setItem('shippingInfo',JSON.stringify({fname,lname,address,city,state,postal,email,phone}))
+            navigate('/payment')
+        }
+        else{
+           return false
+        }
+        
+
     }
 
   return (
@@ -89,6 +128,18 @@ const Shipping = () => {
                     </div>
                 </Col>
             </Row>
+            <ToastContainer
+                position="bottom-center"
+                autoClose={1000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                limit={1}
+            />
         </Container>
     </>
   )

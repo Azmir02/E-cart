@@ -121,11 +121,6 @@ const Bestselling = () => {
     <>
         <div className="main-best-product">
         <div className="product_body">
-                    <Helmet>
-                        <title>
-                            Product page
-                        </title>
-                    </Helmet>
                     <Container>
                         <div className="inner_body">
                             { isLoading  ?

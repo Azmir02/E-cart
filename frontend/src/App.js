@@ -16,6 +16,7 @@ import axios from 'axios'
 import Compare from './Components/Compare';
 import Shipping from './Components/Shipping';
 import Signup from './Components/Signup';
+import Payment from './Components/Payment';
 
 
 //reducer
@@ -256,8 +257,7 @@ function App() {
             </li>
           </Nav>
           <Nav className="user">
-               <Link to = '/'>
-                <div className="users text-center">
+          <div className="users text-center">
                   {userInfo ? 
                    <>
                      <div className="main-userdropdown">
@@ -274,8 +274,6 @@ function App() {
 
                 }
                 </div>
-
-               </Link>
           </Nav>
           </Container>
         </Navbar>
@@ -354,6 +352,7 @@ function App() {
         <Route path = "/signin" element = {<Signin/>}></Route>
         <Route path = "/signup" element = {<Signup/>}></Route>
         <Route path = "/wishlist" element = {<Wishlist/>}></Route>
+        <Route path = "/payment" element = {<Payment/>}></Route>
         <Route path = "/compare" element = {<Compare/>}></Route>
         <Route path = "/shipping" element = {<Shipping/>}></Route>
       </Routes>

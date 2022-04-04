@@ -68,7 +68,7 @@ const Productdetails = () => {
       const existingItem = state.cart.cartItems.find((item)=> item._id == product._id)
       const quantity  = existingItem ? existingItem.quantity + 1 : 1
 
-      const {data} = await axios.get(`/${product._id}`)
+      const {data} = await axios.get(`/api/${product._id}`)
 
       if(data.instock < quantity){
         alert(`${product.name} Is Out Of Stock`)

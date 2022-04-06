@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Alert, Col, Container, Row } from 'react-bootstrap'
 import { Helmet } from 'react-helmet-async'
 import { ToastContainer, toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Checkout from './Checkout'
 import { Store } from './Store'
 
@@ -126,6 +126,7 @@ const Shipping = () => {
                             </div>
                         </form>
                     </div>
+
                 </Col>
             </Row>
             <ToastContainer

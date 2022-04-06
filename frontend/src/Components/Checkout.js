@@ -18,7 +18,7 @@ const Checkout = (props) => {
                         <p>Payment</p>    
                     </div>    
                     <div className={`finish ${props.step4 ? 'active' : ""}`}>
-                        <p>Finish</p>    
+                        <p>Checkout</p>    
                     </div>    
                 </div>
             </Col>

@@ -1422,3 +1422,116 @@ ol {
   width: 100%;
   padding: 12px 20px;
 }
+.paymentmethod-button {
+  margin-top: 50px;
+}
+.paymentmethod-button button {
+  padding: 12px 25px;
+  background-color: #111;
+  color: #fff;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+.back-navigation {
+  margin-top: 70px;
+  display: inline-block;
+}
+.back-navigation a {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgb(175, 174, 174);
+  transition: all linear 0.3s;
+}
+.back-navigation:hover a {
+  color: #eb3223;
+}
+.back-navigation svg {
+  width: 25px;
+  height: 25px;
+  fill: rgb(175, 174, 174);
+  transition: all linear 0.3s;
+}
+.back-navigation:hover svg {
+  fill: #eb3223;
+}
+.left-info {
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid #eaeaea;
+}
+.left-payemntinfo {
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid #eaeaea;
+}
+.payement-edit button a {
+  color: #fff;
+}
+.left-info h4 {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #444;
+}
+.left-info ul {
+  padding-left: 0;
+}
+.user-payment-info ul li {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #f02757;
+  margin-bottom: 12px;
+}
+.user-payment-info ul li span {
+  color: #4e4e4e;
+}
+.edit-info {
+  margin-top: 35px;
+}
+.edit-info button {
+  padding: 8px 25px;
+  background-color: #111;
+  color: #fff;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 5px;
+}
+#edit-main-form .form-field input {
+  width: 100%;
+  padding: 10px 15px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #252525;
+  border: 1px solid #ddd;
+}
+#edit-main-form .form-field input::placeholder {
+  color: #b3b3b3;
+}
+#edit-main-form .form-field input:focus {
+  outline-color: #eb3223;
+}
+#edit-main-form .form-field-country {
+  width: 30%;
+}
+#edit-main-form .form-field-country input {
+  width: 100%;
+  padding: 10px 15px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #252525;
+  border: 1px solid #ddd;
+}
+#edit-main-form .form-field-country input::placeholder {
+  color: #b3b3b3;
+}
+#edit-main-form .form-field-country input:focus {
+  outline-color: #eb3223;
+}

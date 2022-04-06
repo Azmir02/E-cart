@@ -17,6 +17,7 @@ import Compare from './Components/Compare';
 import Shipping from './Components/Shipping';
 import Signup from './Components/Signup';
 import Payment from './Components/Payment';
+import Placeorder from './Components/Placeorder';
 
 
 //reducer
@@ -352,6 +353,7 @@ function App() {
         <Route path = "/signin" element = {<Signin/>}></Route>
         <Route path = "/signup" element = {<Signup/>}></Route>
         <Route path = "/wishlist" element = {<Wishlist/>}></Route>
+        <Route path = "/placeorder" element = {<Placeorder/>}></Route>
         <Route path = "/payment" element = {<Payment/>}></Route>
         <Route path = "/compare" element = {<Compare/>}></Route>
         <Route path = "/shipping" element = {<Shipping/>}></Route>

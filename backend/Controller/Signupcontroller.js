@@ -1,6 +1,6 @@
 import users from "../Models/Usersmodel.js"
 import bcrypt from 'bcryptjs'
-import jwttoken from "../Utils.js"
+import {jwttoken} from "../Utils.js"
 
 const signupcontroller = async(req,res)=>{
    let usersignup = new users({

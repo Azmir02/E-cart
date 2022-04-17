@@ -49,6 +49,7 @@ const Productdetails = () => {
         dispatch({type:'FETCH_REQUEST'})
       try{
         let productinfo = await axios.get(`/api/products/${params.slug}`)
+        console.log(productinfo);
         dispatch({type:'FETCH_SUCCESS', payload:productinfo.data})
 
         //related product parts

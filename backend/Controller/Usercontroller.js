@@ -1,6 +1,6 @@
 import users from "../Models/Usersmodel.js"
 import bcrypt from 'bcryptjs'
-import jwttoken from "../Utils.js"
+import { jwttoken } from "../Utils.js"
 
 const usergetcontroller = async(req,res)=>{
    let user = await users.findOne({email: req.body.email})

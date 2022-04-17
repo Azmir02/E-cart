@@ -27,6 +27,15 @@ function reducer(state, action) {
                     cartItems: cartItems
                 }
             }
+        case 'CLEARE_CART':{
+            return{
+                ...state,
+                cart:{
+                    ...state.cart,
+                    cartItems:[]
+                }}
+        }
+           
 
     case 'DELETE_CART':{
         const cartItems = state.cart.cartItems.filter((item)=> item._id !== action.payload._id)

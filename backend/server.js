@@ -9,6 +9,7 @@ import slugroute from './Routes/Slugrouter.js'
 import userroutes from './Routes/Userrouter.js'
 import Pslider from './Routes/Productslider.js'
 import dbconection from './Databaseconnection/Dbconnection.js'
+import Orderrouter from './Routes/Orderroutes.js'
 
 //connect-mongodb
 dbconection()
@@ -32,6 +33,12 @@ app.use('/api/popup',seedrouter)
 app.use('/api/userauth',userroutes)
 //For slider-latest
 app.use('/api',Pslider)
+// for order
+app.use('/api/orders',Orderrouter)
+
+app.get('/api/key/paypal',(req,res)=>{
+  res.send(process.env.CLIENT_ID)
+})
 
 
 

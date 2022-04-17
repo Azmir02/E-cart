@@ -1470,6 +1470,11 @@ ol {
 .payement-edit button a {
   color: #fff;
 }
+.order-items {
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid #eaeaea;
+}
 .left-info h4 {
   font-family: "Poppins", sans-serif;
   font-size: 20px;
@@ -1534,4 +1539,21 @@ ol {
 }
 #edit-main-form .form-field-country input:focus {
   outline-color: #eb3223;
+}
+.payment-checkout .list-group-item {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 20px 15px !important;
+  color: #252525;
+}
+.payment-checkout {
+  box-sizing: border-box;
+  border: 1px solid #eaeaea;
+}
+.order-summery .card-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: #252525;
 }

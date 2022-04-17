@@ -247,9 +247,9 @@ const Order = () => {
 
                          }
                          {isLoadingpaypal &&  
-                         <Spinner animation="border" role="status">
-                            <span className="visually-hidden"></span>
-                        </Spinner>
+                            <Spinner animation="border" role="status">
+                                <span className="visually-hidden"></span>
+                            </Spinner>
                             }
                 </Col>
             </Row>

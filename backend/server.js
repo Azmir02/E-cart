@@ -37,7 +37,7 @@ app.use('/api',Pslider)
 app.use('/api/orders',Orderrouter)
 
 app.get('/api/key/paypal',(req,res)=>{
-  res.send(process.env.CLIENT_ID)
+  res.send(process.env.CLIENT_IDPAYPAL || "sb")
 })
 
 

@@ -8,9 +8,9 @@ export const jwttoken = (users)=>{
 
 
 export const isAuth = (req,res,next)=>{
-    const authorized = req.headers.authorized
-    if(authorized){
-        const token =  authorized.slice(7,authorized.length)
+    const authorization = req.headers.authorization
+    if(authorization){
+        const token =  authorization.slice(7,authorization.length)
         jwt.verify(
             token,
             process.env.JWT_TOKEN,

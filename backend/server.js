@@ -18,6 +18,10 @@ const app = express()
 //middleware-js
 app.use(express.json())
 
+app.get('/api/key/paypal',(req,res)=>{
+  res.send(process.env.CLIENT_IDPAYPAL)
+})
+
 //product router
 app.use('/api/seed',seedrouter)
 //product-get router
@@ -36,9 +40,7 @@ app.use('/api',Pslider)
 // for order
 app.use('/api/orders',Orderrouter)
 
-app.get('/api/key/paypal',(req,res)=>{
-  res.send(process.env.CLIENT_IDPAYPAL || "sb")
-})
+
 
 
 

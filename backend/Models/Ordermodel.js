@@ -92,7 +92,7 @@ const Ordermodel = new Schema({
     user:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users',
-        // required: true
+        required: true
     },
     deliverycharge: {
         type: Number,

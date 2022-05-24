@@ -3,10 +3,7 @@ import axios from 'axios'
 import { useParams,useNavigate,Link } from 'react-router-dom';
 import Ratings from './Ratings';
 import { BsBag,BsHeart } from "react-icons/bs";
-import ImageZoom from "react-image-zooom";
-import Zoom from 'react-img-zoom'
 import ReactImageMagnify from "react-image-magnify";
-import InnerImageZoom from 'react-inner-image-zoom';
 import { Helmet} from 'react-helmet-async';
 import { Container,Row ,Col} from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
@@ -278,7 +275,7 @@ const Productdetails = () => {
                   </Col>
                 </Row>
               </div>
-          </Col>
+            </Col>
             :
             <Errorpage></Errorpage>
             }

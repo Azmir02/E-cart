@@ -133,11 +133,12 @@ const Placeorder = () => {
                 paymentmethod: state5.paymentMethod,
                 productprice: totalprice,
                 deliverycharge: delivery,
+                user: userInfo._id,
                 tax: tax
             },
             {
                 headers: {
-                    authorized:`Bearer ${userInfo.token}`
+                    authorization:`Bearer ${userInfo.token}`
                 }
             }
             )

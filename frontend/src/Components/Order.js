@@ -2,6 +2,7 @@ import axios from 'axios'
 import React,{useEffect, useReducer,useContext} from 'react'
 import { Col, Container, Row ,Card,ListGroup,ListGroupItem,Spinner,Alert} from 'react-bootstrap'
 import {PayPalButtons,usePayPalScriptReducer} from "@paypal/react-paypal-js";
+import StripeCheckout from 'react-stripe-checkout';
 import {  toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom'
 import { Store } from './Store'
@@ -69,7 +70,6 @@ const Order = () => {
     });
 
     const [{isPending }, paypalDispatch] = usePayPalScriptReducer()
-    console.log(order,"order bal hala");
 
     const {state,state3,state4,state5,dispatch4,dispatch: patchContxt} = useContext(Store)
     const navigate = useNavigate()
@@ -101,7 +101,9 @@ const Order = () => {
             try{
                 dispatch({type: 'PAYPAL_REQUEST'})
                 const {data} = await axios.put(`/api/orders/${order._id}/pay`,details,{
-                    headers: `Bearer ${userInfo.token}`
+                    headers:  {
+                        authorization:`Bearer ${userInfo.token}`
+                    }
                 })
                 dispatch({
                     type: 'PAYPAL_SUCCESS',
@@ -120,7 +122,6 @@ const Order = () => {
     const onError = (data, actions) => {
         toast.error("An Error occured with your payment ");
       };
-    console.log(order._id);
     useEffect(()=>{
         if(!order._id || successpaypal || (order._id && order._id !== OrderId)){
             let showorderdata = async ()=>{
@@ -128,7 +129,7 @@ const Order = () => {
                     dispatch({type: 'DATA_REQUEST'})
                     const {data} = await axios.get(`/api/orders/${OrderId}`,{
                         headers: {
-                            authorized:`Bearer ${userInfo.token}`
+                            authorization:`Bearer ${userInfo.token}`
                         }
                     })
 
@@ -145,21 +146,21 @@ const Order = () => {
         }
         else{
             const loadPaypal = async ()=>{
-                const {data: client_id} = await axios.get("/api/key/paypal",{
+                const {data} = await axios.get("/api/key/paypal",{
                     headers: {
-                        authorized:`Bearer ${userInfo.token}`
+                        authorization:`Bearer ${userInfo.token}`
                     }
                 })
                 paypalDispatch({
                     type: "resetOptions",
                     value: {
-                        'client_id': client_id,
+                        "client-id": data,
                         currency: "USD",
                     },
                 });
                 paypalDispatch({
                     type: "setLoadingStatus",
-                    value: 'pending'
+                    value: "pending"
                 });
             }
 
@@ -167,6 +168,26 @@ const Order = () => {
         }
         
     },[OrderId,order,userInfo,navigate,successpaypal,paypalDispatch])
+
+
+    //for strip
+    const stripToken = async ()=>{
+        try{
+            dispatch({type: 'DATA_REQUEST'})
+            const {data} = await axios.get(`/api/orders/${OrderId}/strippay`,{
+                headers: {
+                    authorization:`Bearer ${userInfo.token}`
+                }
+            })
+            console.log(data);
+            dispatch({type: 'DATA_SUCCESS', payload: data})
+                    
+            }
+            catch{
+                dispatch({type: 'DATA_FAIL'})
+                console.log("nai");
+            }
+    }
 
   return (
     <>
@@ -235,7 +256,7 @@ const Order = () => {
                     </Card.Body>
                     </Card>
 
-                        {order.isPaid
+                        {!order.isPaid
                             &&
                             isPending
                                 ?
@@ -243,14 +264,27 @@ const Order = () => {
                                     <span className="visually-hidden"></span>
                                 </Spinner>
                                 :
+                                order.paymentmethod == "paypal"
+                                &&
                                 <PayPalButtons createOrder= {createOrder} onApprove = {onApprove } onError = {onError }></PayPalButtons>
-
                          }
                          {isLoadingpaypal &&  
                             <Spinner animation="border" role="status">
                                 <span className="visually-hidden"></span>
                             </Spinner>
-                            }
+                        }
+
+                        {order.paymentmethod == "stripe"
+                            &&
+                            <StripeCheckout
+                                token={stripToken}
+                                stripeKey="pk_test_51KqHBQILBuUmmdZJ4Vqk9mTHzibzqEpClzi6vRLcrrkmhON3Yn53ADkaVGnAmcncdMUTViUNX732qKPvo1qdNf9Y00zGb1C7LA"
+                                panelLabel='payment'
+                                amount={order.productprice*100}
+                                currency = "USD"
+                            />
+                        }
+                       
                 </Col>
             </Row>
         </Container>

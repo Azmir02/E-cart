@@ -121,6 +121,7 @@ const Productpage = () => {
     product.map((item)=>{
      if(item.name.includes(searchtopic.toLowerCase())){
         searcharr.push(item)
+        console.log(item);
       }
     })
     setSearchresult(searcharr)

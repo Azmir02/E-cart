@@ -9,7 +9,7 @@ const Ordercontroller = async (req,res)=>{
         productprice: req.body.productprice,
         deliverycharge: req.body.deliverycharge,
         tax: req.body.tax,
-        user: req.user._id
+        user: req.body.user
     })
 
     const order = await neworder.save()

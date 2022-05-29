@@ -10,6 +10,7 @@ import userroutes from './Routes/Userrouter.js'
 import Pslider from './Routes/Productslider.js'
 import dbconection from './Databaseconnection/Dbconnection.js'
 import Orderrouter from './Routes/Orderroutes.js'
+import Filerouter from './Routes/Filerouter.js'
 
 //connect-mongodb
 dbconection()
@@ -21,6 +22,8 @@ app.use(express.json())
 app.get('/api/key/paypal',(req,res)=>{
   res.send(process.env.CLIENT_IDPAYPAL)
 })
+
+//file upload
 
 //product router
 app.use('/api/seed',seedrouter)
@@ -39,6 +42,7 @@ app.use('/api/userauth',userroutes)
 app.use('/api',Pslider)
 // for order
 app.use('/api/orders',Orderrouter)
+app.use('/api/image',Filerouter)
 
 
 

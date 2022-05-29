@@ -20,6 +20,10 @@ const Usermodel = new Schema({
     isAdmin:{
         type: Boolean,
         default: false
+    },
+    isVendor:{
+        type: Boolean,
+        default: false
     }
 })
 

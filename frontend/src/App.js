@@ -19,6 +19,8 @@ import Signup from './Components/Signup';
 import Payment from './Components/Payment';
 import Placeorder from './Components/Placeorder';
 import Order from './Components/Order';
+import Vendor from './Components/Vendor';
+import Dashboard from './Components/Dashboard';
 
 
 //reducer
@@ -158,6 +160,7 @@ function App() {
       type: "USER_LOGOUT",
     })
     localStorage.removeItem("userInfo")
+    navigate(`/`)
   }
 
 
@@ -265,8 +268,14 @@ function App() {
                      <div className="main-userdropdown">
                       <p>{userInfo.name}</p>
                         <div className="dropdownuser">
-                            <span>My account</span>
-                            <span>Change profile picture</span>
+                           {
+                             userInfo.isVendor
+                             ?
+                             <Link to = "/dashboard"><span>My Dashboard</span></Link>
+                             :
+                             <Link to = "/vendor"><span>Become Vendor</span></Link>
+                             
+                           }
                             <span onClick={handleSignout}>Logout</span>
                         </div> 
                       </div>
@@ -296,6 +305,7 @@ function App() {
                 <>
                   {cartItems.map((item)=>(
                         <>
+                            
                             <div className='cart-page-details text-center'>
                                 <Row className='align-items-center'>
                                         <Col lg = {3}>
@@ -357,6 +367,8 @@ function App() {
         <Route path = "/placeorder" element = {<Placeorder/>}></Route>
         <Route path = "/payment" element = {<Payment/>}></Route>
         <Route path = "/compare" element = {<Compare/>}></Route>
+        <Route path = "/vendor" element = {<Vendor/>}></Route>
+        <Route path = "/dashboard" element = {<Dashboard/>}></Route>
         <Route path = "/shipping" element = {<Shipping/>}></Route>
         <Route path = "/orders/:id" element = {<Order/>}></Route>
       </Routes>

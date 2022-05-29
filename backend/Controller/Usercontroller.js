@@ -12,6 +12,7 @@ const usergetcontroller = async(req,res)=>{
               email: user.email,
               password: user.password,
               isAdmin: user.isAdmin,
+              isVendor: user.isVendor,
               token: jwttoken(user)
           })
           return

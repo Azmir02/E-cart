@@ -1557,3 +1557,13 @@ ol {
   font-weight: 600;
   color: #252525;
 }
+/* Vendor */
+.rules p {
+  text-align: justify;
+}
+.uploading {
+  max-height: 500px;
+  overflow-y: scroll;
+  border: 1px solid #a7a7a7;
+  padding: 20px;
+}

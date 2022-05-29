@@ -71,6 +71,7 @@ const Homepage = () => {
     <section id = "banner">
       
         <Container>
+    
           <Row className='mt-3'>
             <Col lg = {12}>
                 <Row className='mx-0'>
@@ -93,6 +94,7 @@ const Homepage = () => {
                 </Row>
             </Col>
           </Row>
+          <img src ="/uploads\avatar-1653834799186.png" alt="abal"/>
         </Container>
     </section>
 

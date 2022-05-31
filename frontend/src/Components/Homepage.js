@@ -94,7 +94,6 @@ const Homepage = () => {
                 </Row>
             </Col>
           </Row>
-          <img src ="/uploads\avatar-1653834799186.png" alt="abal"/>
         </Container>
     </section>
 

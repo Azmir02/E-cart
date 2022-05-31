@@ -36,7 +36,7 @@ const Dashboard = () => {
               <ListGroup.Item>Payments</ListGroup.Item>
           </ListGroup>
         </Col>
-        <Col lg = {4}>
+        <Col lg = {6}>
           {sotes && <Storepage></Storepage>}
           {categories && <Categories></Categories>}
           {productall && <Uploadproduct></Uploadproduct>}

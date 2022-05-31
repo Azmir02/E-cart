@@ -34,7 +34,6 @@ const storage = multer.diskStorage({
   
   Filerouter.post("/", upload.single("avatar"), (req, res) => {
   
-
   
   
     res.send(`/${req.file.path}`);

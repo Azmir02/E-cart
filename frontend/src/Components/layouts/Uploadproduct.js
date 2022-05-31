@@ -1,12 +1,19 @@
 import axios from 'axios'
-import React, { useState,useContext, useEffect } from 'react'
+import React, { useState,useContext, useEffect, useRef,useMemo } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import JoditEditor from "jodit-react";
 import { Store } from '../Store'
 
 
 const Uploadproduct = () => {
     const {state3,dispatch3} = useContext(Store)
     const [storename,setStorename]= useState("")
+	const [content, setContent] = useState('')
+    const editor = useRef(null)
+
+	const config ={
+        readonly: false,  // all options from https://xdsoft.net/jodit/doc/,
+	}
 
     useEffect(()=>{
         let getStoredata = async ()=>{
@@ -44,7 +51,20 @@ const Uploadproduct = () => {
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Desciprtion</Form.Label>
-              
+
+              {useMemo(() => (
+                <JoditEditor
+                    ref={editor}
+                    value={content}
+                    config={config}
+                    tabIndex={1}
+                    onBlur={newContent => {}}
+                    onChange={newContent => setContent(newContent)}
+                />
+                ),[]
+
+            )}
+
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">

@@ -11,7 +11,7 @@ import Pslider from './Routes/Productslider.js'
 import dbconection from './Databaseconnection/Dbconnection.js'
 import Orderrouter from './Routes/Orderroutes.js'
 import Filerouter from './Routes/Filerouter.js'
-
+import path from "path";
 //connect-mongodb
 dbconection()
 
@@ -88,6 +88,8 @@ app.get('/slider/:slug', function (req, res) {
 //   res.send(product)
 // })
 
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 
 
